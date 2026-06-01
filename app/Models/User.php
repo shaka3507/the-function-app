@@ -29,4 +29,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function userRsvps () {
+        return $this->hasMany(Rsvp::class, 'user_id');
+    }
 }
