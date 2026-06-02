@@ -12,9 +12,11 @@ class RsvpController extends Controller
         $incomingFields = $request->validate([
             'attending' => 'required',
             'plus_one' => 'required',
+            'guest_name' => 'required',
         ]);
 
         $incomingFields['attending'] = strip_tags($incomingFields['attending']);
+        $incomingFields['guest_name'] = strip_tags($incomingFields['guest_name']);
         $incomingFields['event'] = 'june_7';
         $incomingFields['user_id'] = auth()->id();
         Rsvp::create($incomingFields);

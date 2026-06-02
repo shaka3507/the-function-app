@@ -25,6 +25,17 @@ class UserController extends Controller
         auth()->logout();
         return redirect('/');
     }
+    public function onepw(Request $request) {
+        $incomingFields = $request->validate([
+            'onename' => 'required',
+            'onepassword' => 'required',
+        ]);
+        if (auth()->attempt(['name' => $incomingFields['onename'], 'password' => $incomingFields['onepassword']])) {
+            $request->session()->regenerate();
+        }
+
+        return redirect('/');
+    }
     public function login(Request $request) {
         $incomingFields = $request->validate([
             'loginemail' => 'required',

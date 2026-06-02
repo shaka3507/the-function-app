@@ -10,7 +10,7 @@ class Rsvp extends Model
     //
     use HasFactory;
 
-    protected $fillable = ['attending', 'event', 'user_id', 'plus_one'];
+    protected $fillable = ['attending', 'event', 'user_id', 'plus_one', 'guest_name'];
 
     public function user() {
         return $this->belongsTo(User::class, 'user_id');
