@@ -211,76 +211,89 @@
 
 <body>
     <main class="scroll-container">
-        <!-- Panel 1: Hero Image -->
-        <section class="panel" style="padding: 0;">
-            <img src="{{ asset('meadow.jpg') }}" class="flowers" alt="Meadow flowers" />
-        </section>
+        @auth
+            <!-- Panel 1: Hero Image -->
+            <section class="panel" style="padding: 0;">
+                <img src="{{ asset('meadow.jpg') }}" class="flowers" alt="Meadow flowers" />
+            </section>
 
-        <!-- Panel 2: Event Details -->
-        <section class="panel">
-            <div class="event-container">
-                <div class="container-header">
-                    <h1>A Flowering 40th Celebration</h1>
-                    <img class="mika" src="{{ asset('mika.png') }}" alt="Mika" />
-                </div>
-                <div>
-                    <p class="desc-invite">You are cordially invited to Mika's Flowering Fortieth Solar's Return
-                        Celebration Picnic.</p>
-                    <div class="event-details">
-                        <h3>Sunday, June 7th, 2026 | 4-7PM</h3>
-                        <h4>
-                            <a href="https://www.google.com/maps..." target="_blank">Humboldt Park Hill</a>
-                            <br><br>Attire: Garden Party & Whatever Fancy Means to You
-                        </h4>
-                        <p>You are cordially invited to an afternoon for a luxe picnic in Humboldt park with vegan food
-                            and delightful company.</p>
-                        <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
-                        <p>Gluten free, nut free and low/no sugar options available </p>
-                        <p>This event will be family friendly.</p>
+            <!-- Panel 2: Event Details -->
+            <section class="panel">
+                <div class="event-container">
+                    <div class="container-header">
+                        <h1>A Flowering 40th Celebration</h1>
+                        <img class="mika" src="{{ asset('mika.png') }}" alt="Mika" />
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Panel 3: RSVP Form -->
-        <section class="panel rsvp">
-            <h2>RSVP</h2>
-            <div class="rsvp-form">
-                <form action="create-rsvp" method="POST">
-                    <!-- @csrf -->
-                    <p>
-                        <label prejudices="guest_name">My name is</label>
-                        <input type="text" id="guest_name" name="guest_name" placeholder="name" />
-                    </p>
-                    <p>
-                        <label prejudices="attending">and I am a</label>
-                        <select name="attending" id="attending">
-                            <option value="yes">yes</option>
-                            <option value="maybe">maybe</option>
-                            <option value="no">no</option>
-                        </select>
-                        <br />
-                        for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
-                            min="0" max="10" /> guests.
-                    </p>
-                    <button type="submit">Submit RSVP</button>
-                    <p>save on <a target="_blank" href="https://calendar.app.google/hySxHQcaEXAyQgVF6">gcal</a></p>
-                </form>
-                <div>
                     <div>
-                        <h4>{{ $rsvp_count }} current confirmed attendees <span class="dropdown"
-                                onclick="dropdown()">(click to see)</span></h4>
-                        <div id="attendee-list" class="hide">
-                            @foreach ($rsvps as $rsvp)
-                                <span>
-                                    {{ $rsvp->guest_name }} <br/>
-                                </span>
-                            @endforeach
+                        <p class="desc-invite">You are cordially invited to Mika's Flowering Fortieth Solar's Return
+                            Celebration Picnic.</p>
+                        <div class="event-details">
+                            <h3>Sunday, June 7th, 2026 | 4-7PM</h3>
+                            <h4>
+                                <a href="https://www.google.com/maps..." target="_blank">Humboldt Park Hill</a>
+                                <br><br>Attire: Garden Party & Whatever Fancy Means to You
+                            </h4>
+                            <p>You are cordially invited to an afternoon for a luxe picnic in Humboldt park with vegan food
+                                and delightful company.</p>
+                            <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
+                            <p>Gluten free, nut free and low/no sugar options available </p>
+                            <p>This event will be family friendly.</p>
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <!-- Panel 3: RSVP Form -->
+            <section class="panel rsvp">
+                <h2>RSVP</h2>
+                <div class="rsvp-form">
+                    <form action="create-rsvp" method="POST">
+                        @csrf
+                        <p>
+                            <label prejudices="guest_name">My name is</label>
+                            <input type="text" id="guest_name" name="guest_name" placeholder="name" />
+                        </p>
+                        <p>
+                            <label prejudices="attending">and I am a</label>
+                            <select name="attending" id="attending">
+                                <option value="yes">yes</option>
+                                <option value="maybe">maybe</option>
+                                <option value="no">no</option>
+                            </select>
+                            <br />
+                            for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
+                                min="0" max="10" /> guests.
+                        </p>
+                        <button type="submit">Submit RSVP</button>
+                        <p>save on <a target="_blank" href="https://calendar.app.google/hySxHQcaEXAyQgVF6">gcal</a></p>
+                    </form>
+                    <div>
+                        <div>
+                            <h4>{{ $rsvp_count }} current confirmed attendees <span class="dropdown"
+                                    onclick="dropdown()">(click to see)</span></h4>
+                            <div id="attendee-list" class="hide">
+                                @foreach ($rsvps as $rsvp)
+                                    <span>
+                                        {{ $rsvp->guest_name }} <br />
+                                    </span>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        @else
+            <div class="registration">
+                <h2>LOGIN TO RSVP</h2>
+                <form action="/onepw" method="POST">
+                    @csrf
+                    <input type="text" placeholder="name" name="onename">
+                    <input type="password" placeholder="password" name="onepassword">
+                    <br />
+                    <button>Enter</button>
+                </form>
             </div>
-        </section>
+        @endauth
     </main>
 
     <script>
