@@ -169,11 +169,29 @@
         .login {
             padding: 20px;
             margin: 40px auto;
-            width: 100%;
             max-width: 400px;
             border: 1px solid black;
             box-shadow: 8px 8px 0px black;
             border-radius: 8px;
+        }
+
+        .modern-blob {
+            display: grid;
+            place-items: center;
+            /* Centers both horizontally and vertically */
+            height: 50vh;
+            width: 100vw;
+            aspect-ratio: 1;
+            background: linear-gradient(45deg, #82dc87, #ffd9008f);
+            /* Uses 8 values to create asymmetrical, organic fluid curves */
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+            transition: border-radius 1s ease-in-out;
+        }
+
+
+        /* Dynamic shifting animation on hover */
+        .modern-blob:hover {
+            border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
         }
 
         .hide {
@@ -283,15 +301,17 @@
                 </div>
             </section>
         @else
-            <div class="registration">
-                <h2>LOGIN TO RSVP</h2>
-                <form action="/onepw" method="POST">
-                    @csrf
-                    <input type="text" placeholder="name" name="onename">
-                    <input type="password" placeholder="password" name="onepassword">
-                    <br />
-                    <button>Enter</button>
-                </form>
+            <div class="modern-blob">
+                <div class="login-form">
+                    <h2>LOGIN TO RSVP</h2>
+                    <form action="/onepw" method="POST">
+                        @csrf
+                        <input type="text" placeholder="name" name="onename">
+                        <input type="password" placeholder="password" name="onepassword">
+                        <br />
+                        <button>Enter</button>
+                    </form>
+                </div>
             </div>
         @endauth
     </main>
