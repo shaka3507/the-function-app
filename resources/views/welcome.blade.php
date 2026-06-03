@@ -9,9 +9,9 @@
         <div style="border: 3px solid black;">
         <h2> Register </h2>
         <form action="/register" method="POST">
-            <input type="text" placeholder="name">
-            <input type="text" placeholder="email">
-            <input type="password" placeholder="password">
+            <input type="text" placeholder="name" name="name">
+            <input type="text" placeholder="email" name="email">
+            <input type="password" placeholder="password" name="password">
             <button> Register </button>
         </form>
     </body>
