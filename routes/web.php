@@ -24,6 +24,9 @@ Route::get('/', function () {
     ]);
 });
 
+Route::get('/admin', function () {
+    return view('welcome');
+});
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/logout', [UserController::class, 'logout']);
