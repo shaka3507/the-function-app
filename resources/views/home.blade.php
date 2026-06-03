@@ -10,7 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&Cormorant:ital,wght@0,300..700;1,300..700&family=DM+Serif+Text:ital@0;1&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
         rel="stylesheet">
-    <title>The Function - An RSVP Application</title>
+    <title>The Function - Mika's Flowering Fortieth</title>
     <style>
         /* BASE & SYSTEM STYLES */
         *,
