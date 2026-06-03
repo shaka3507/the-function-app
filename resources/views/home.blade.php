@@ -179,8 +179,7 @@
             display: grid;
             place-items: center;
             /* Centers both horizontally and vertically */
-            height: 50vh;
-            width: 100vw;
+            height: 400px;
             aspect-ratio: 1;
             background: linear-gradient(45deg, #82dc87, #ffd9008f);
             /* Uses 8 values to create asymmetrical, organic fluid curves */
@@ -307,6 +306,7 @@
                     <form action="/onepw" method="POST">
                         @csrf
                         <input type="text" placeholder="name" name="onename">
+                        <br/>
                         <input type="password" placeholder="password" name="onepassword">
                         <br />
                         <button>Enter</button>
