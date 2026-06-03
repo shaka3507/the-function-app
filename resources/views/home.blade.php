@@ -33,6 +33,8 @@
         padding: 0;
         text-align: left;
         font-family: 'Cormorant';
+          display: grid;
+  place-items: center; /* Centers both horizontally and vertically */
     }
 
     p,
@@ -191,7 +193,27 @@
         height: 300px;
     }
 
+    .registration {
+        margin: 200px 0;
+    }
 
+    .modern-blob {
+        display: grid;
+        place-items: center;
+        /* Centers both horizontally and vertically */
+        height: 100vh;
+        aspect-ratio: 1;
+        background: linear-gradient(45deg, #82dc87, #ffd9008f);
+        /* Uses 8 values to create asymmetrical, organic fluid curves */
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        transition: border-radius 1s ease-in-out;
+    }
+
+
+    /* Dynamic shifting animation on hover */
+    .modern-blob:hover {
+        border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
+    }
 
     @media (max-width: 500px) {
         .rsvp-form {
@@ -210,6 +232,11 @@
                 font-size: 1.5em;
                 margin: 4px;
             }
+        }
+
+        .registration {
+            width: 75%;
+            margin: 200px auto;
         }
     }
 
@@ -234,15 +261,16 @@
             color: #312166;
             text-align: left;
         }
-
-        img {
-            padding: 8px;
-            text-align: right;
-            margin: 8px;
-        }
     }
+
     .panel {
         border-radius: 8px;
+    }
+
+    .login-form {
+        button {
+            margin-top: 16px;
+        }
     }
 </style>
 
@@ -310,35 +338,19 @@
                 </div>
                 </div>
             </section>
-            {{-- <footer>
-                <form action="/logout" method="POST">
-                    <button>logout</button>
-                </form>
-            </footer> --}}
         @else
-            {{-- <div class="guest">
-
-            <h2> or </h2>
-            <div class="login">
-                <h2>Login </h2>
-                <form action="/login" method="POST">
-                    @csrf
-                    <input type="text" placeholder="email" name="loginemail">
-                    <input type="password" placeholder="password" name="loginpassword">
-                    <br />
-                    <button>Login</button>
-                </form>
-            </div>
-        </div> --}}
-            <div class="registration">
-                <h2>LOGIN TO RSVP</h2>
-                <form action="/onepw" method="POST">
-                    @csrf
-                    <input type="text" placeholder="name" name="onename">
-                    <input type="password" placeholder="password" name="onepassword">
-                    <br />
-                    <button>Enter</button>
-                </form>
+            <div class="modern-blob">
+                <div class="login-form">
+                    <h2>LOGIN TO RSVP</h2>
+                    <form action="/onepw" method="POST">
+                        @csrf
+                        <input type="text" placeholder="name" name="onename">
+                        <br/>
+                        <input type="password" placeholder="password" name="onepassword">
+                        <br />
+                        <button>Enter</button>
+                    </form>
+                </div>
             </div>
         @endauth
     </main>
