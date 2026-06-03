@@ -31,7 +31,7 @@
     body {
         margin: 0;
         padding: 0;
-        text-align: center;
+        text-align: left;
         font-family: 'Cormorant';
     }
 
@@ -118,24 +118,15 @@
     }
 
     .event-details {
-        border: 1px solid black;
-        border-radius: 8px;
-        margin: 8px;
-        text-align: center;
-        padding: 8px;
-
-        p {
-            margin: 0 50px;
-        }
+        text-align: left;
     }
 
     .rsvp-form {
         border: 1px solid black;
-        border-radius: 8px;
+
         margin: 8px;
-        text-align: center;
+        text-align: left;
         padding: 8px;
-        max-height: 200px;
         overflow-y: scroll;
     }
 
@@ -189,21 +180,17 @@
     button.scroll-button {
         position: absolute;
         top: 50%;
-        text-align: center;
+        left: 20px;
+        text-align: left;
         z-index: 1;
         background-color: white;
-        width: 25%;
+        font-size: 24px;
     }
 
-    /* .flowers {
-        position: absolute;
-        right: 0;
-        top: 0;
-        width: 50%;
-        z-index: -2;
-        height: 100vh;
-    } */
-    
+    .mika {
+        height: 300px;
+    }
+
 
 
     @media (max-width: 500px) {
@@ -224,67 +211,112 @@
                 margin: 4px;
             }
         }
-        
+    }
+
+    .flowers {
+        height: 100vh;
+    }
+
+    .scroll-container {
+        height: 100vh;
+        overflow-y: scroll;
+        scroll-snap-type: y mandatory;
+    }
+
+    .panel {
+        height: 100vh;
+        scroll-snap-align: start;
+        /* Snaps to the top edge of each section */
+    }
+
+    .container-header {
+        h1 {
+            color: #312166;
+            text-align: left;
+        }
+
+        img {
+            padding: 8px;
+            text-align: right;
+            margin: 8px;
+        }
+    }
+    .panel {
+        border-radius: 8px;
     }
 </style>
 
 <body>
-    @auth
-        <img src="{{ asset('meadow.jpg') }}" class="flowers"/>
-        <button class="scroll-button">scroll down</button>
-        <div class="container-header">
-            <h1>A Flowering 40th Celebration</h1>
-            <p>You are cordially invited to Mika's Flowering Fortieth Solar Return Celebration Picnic.</p>
-        </div>
-
-        <div class="event-container">
-            <div class="event-details">
-                <h3>Sunday, June 7th, 2026 | 4-7PM</h3>
-                <h4><a href="https://www.google.com/maps?client=firefox-b-1-d&hs=tgf&sca_esv=a708274f6968f4df&output=search&q=humboldt+park+hill&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3hg2cLua8k0b5ikl_6e-_EuCrJXF2omMOMbPtXIscilQlfTWJ4o6kRAc14Hx65kj5RE041e1qFN3cBDm91PRkIOJUMqlW4TDSQK7aOtODtHveWicH-qCAxHyWegcz7AcltgLBzEPuCnVjclgrz6ZE-iQ6Af91m5khPA3h2c9PF5Mc67XLw&entry=mc&ved=1t:200715&ictx=111"
-                        target="_blank">Humboldt Park Hill</a> / Attire: Garden Party & Whatever Fancy Means to You </h4>
-                <p>You are cordially invited to an afternoon for a luxe picnic in Humboldt park with food and delightful
-                    company. <br />We appreciate your support in celebrating the fortieth solar return of Mika Muñoz.</p>
-                <p>This event will be family friendly.</p>
-            </div>
-            <div class="rsvp-form">
-                <form action="create-rsvp" method="POST">
-                    @csrf
-                    <p>My name is: <input type="text" id="guest_name" name="guest_name" /></p>
-                    and I<label for="attending"> am a</label>
-                    <select name="attending" id="attending">
-                        <option value="yes">yes</option>
-                        <option value="maybe">maybe</option>
-                        <option value="no">no</option>
-                    </select>
-                    in attendance to <br /> Mika's Flowering Fortieth Solar Return Celebration Picnic. <br />
-                    I will be bringing<label for="plus_one"></label>
-                    <input type="number" placeholder="1" id="plus_one" name="plus_one" min="0" max="5">
-                    guests.
-                    <br />
-                    <button> RSVP </button>
-                </form>
-                <div class="attendee-container">
-                    <div>
-                        <h4>{{ $rsvp_count }} current confirmed attendees <button class="dropdown"
-                                onclick="dropdown()">›</button></h4>
-                        <div id="attendee-list" class="hide">
-                            @foreach ($rsvps as $rsvp)
-                                <p>
-                                    {{ $rsvp->guest_name }}
-                                </p>
-                            @endforeach
+    <main class="scroll-container">
+        @auth
+            <section class="panel">
+                <img src="{{ asset('meadow.jpg') }}" class="flowers" />
+                {{-- <button class="scroll-button">scroll down</button> --}}
+            </section>
+            <section class="panel">
+                <div class="event-container">
+                    <div class="container-header">
+                        <h1>A Flowering 40th Celebration</h1>
+                        <div> <img class="mika" src="{{ asset('mika.png') }}" /></div>
+                    </div>
+                    <p>You are cordially invited to Mika's Flowering Fortieth Solar Return Celebration Picnic.</p>
+                    <div class="event-details">
+                        <h3>Sunday, June 7th, 2026 | 4-7PM</h3>
+                        <h4><a href="https://www.google.com/maps?client=firefox-b-1-d&hs=tgf&sca_esv=a708274f6968f4df&output=search&q=humboldt+park+hill&source=lnms&fbs=ADc_l-aN0CWEZBOHjofHoaMMDiKpaEWjvZ2Py1XXV8d8KvlI3hg2cLua8k0b5ikl_6e-_EuCrJXF2omMOMbPtXIscilQlfTWJ4o6kRAc14Hx65kj5RE041e1qFN3cBDm91PRkIOJUMqlW4TDSQK7aOtODtHveWicH-qCAxHyWegcz7AcltgLBzEPuCnVjclgrz6ZE-iQ6Af91m5khPA3h2c9PF5Mc67XLw&entry=mc&ved=1t:200715&ictx=111"
+                                target="_blank">Humboldt Park Hill</a> / Attire: Garden Party & Whatever Fancy Means to You
+                        </h4>
+                        <p>You are cordially invited to an afternoon for a luxe picnic in Humboldt park with food and
+                            delightful
+                            company. <br />We appreciate your support in celebrating the fortieth solar return of Mika
+                            Muñoz.
+                        </p>
+                        <p>This event will be family friendly.</p>
+                    </div>
+            </section>
+            <section class="panel">
+                <h2>RSVP</h2>
+                <div class="rsvp-form">
+                    <form action="create-rsvp" method="POST">
+                        @csrf
+                        <p>My name is: <input type="text" id="guest_name" name="guest_name" /></p>
+                        and I<label for="attending"> am a</label>
+                        <select name="attending" id="attending">
+                            <option value="yes">yes</option>
+                            <option value="maybe">maybe</option>
+                            <option value="no">no</option>
+                        </select>
+                        in attendance to <br /> Mika's Flowering Fortieth Solar Return Celebration Picnic. <br />
+                        I will be bringing<label for="plus_one"></label>
+                        <input type="number" placeholder="1" id="plus_one" name="plus_one" min="0" max="5">
+                        guests.
+                        <br />
+                        <button> RSVP </button>
+                    </form>
+                    <p><a target="_blank" href="https://calendar.app.google/QppcTTaLBDpx5ccc7">Add to Google Calendar</a>
+                    </p>
+                    <div class="attendee-container">
+                        <div>
+                            <h4>{{ $rsvp_count }} current confirmed attendees <button class="dropdown"
+                                    onclick="dropdown()">›</button></h4>
+                            <div id="attendee-list" class="hide">
+                                @foreach ($rsvps as $rsvp)
+                                    <p>
+                                        {{ $rsvp->guest_name }}
+                                    </p>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <footer>
-            <form action="/logout" method="POST">
-                <button>logout</button>
-            </form>
-        </footer>
-    @else
-        {{-- <div class="guest">
+                </div>
+            </section>
+            {{-- <footer>
+                <form action="/logout" method="POST">
+                    <button>logout</button>
+                </form>
+            </footer> --}}
+        @else
+            {{-- <div class="guest">
 
             <h2> or </h2>
             <div class="login">
@@ -298,17 +330,18 @@
                 </form>
             </div>
         </div> --}}
-        <div class="registration">
-            <h2>LOGIN TO RSVP</h2>
-            <form action="/onepw" method="POST">
-                @csrf
-                <input type="text" placeholder="name" name="onename">
-                <input type="password" placeholder="password" name="onepassword">
-                <br />
-                <button>Enter</button>
-            </form>
-        </div>
-    @endauth
+            <div class="registration">
+                <h2>LOGIN TO RSVP</h2>
+                <form action="/onepw" method="POST">
+                    @csrf
+                    <input type="text" placeholder="name" name="onename">
+                    <input type="password" placeholder="password" name="onepassword">
+                    <br />
+                    <button>Enter</button>
+                </form>
+            </div>
+        @endauth
+    </main>
 </body>
 
 </html>
