@@ -14,9 +14,9 @@ Route::get('/', function () {
     if (auth()->check()) {
         $rsvps = Rsvp::where('attending', ['yes', 'maybe'])->get();
         $rsvps_no = Rsvp::where('attending', 'no')->get();
-        $rsvp_count = Rsvp::where('attending', ['yes', 'maybe'])->count();
+        $rsvp_count = Rsvp::where('attending', ['yes', 'maybe'])->where('event', 'june_7')->count();
         $rsvp_no_count = Rsvp::where('attending', ['no'])->count();
-        $plus_one_count = Rsvp::sum('plus_one');
+        $plus_one_count = Rsvp::where('event', 'june_7')->sum('plus_one');
         $total_count = $rsvp_count + $plus_one_count;
     }
     return view('home', [

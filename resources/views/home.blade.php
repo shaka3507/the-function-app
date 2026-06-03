@@ -111,7 +111,7 @@
             width: 100%;
         }
 
-        .rsvp {
+        .rsvp, .rsvp-aztec {
             background-image: url('./flower.png');
             background-size: 10%;
 
@@ -124,6 +124,10 @@
                 border: 1px solid red;
                 border-radius: 8px;
             }
+        }
+
+        .rsvp-aztec {
+            background-image: url('./jaguar.png');
         }
 
         /* COMPONENT STYLES */
@@ -193,6 +197,20 @@
             border-radius: 50% 50% 30% 70% / 50% 60% 40% 50%;
         }
 
+        #location-link {
+            color: lightskyblue;
+            text-decoration: none;
+            font-size: 20px;
+
+            >svg {
+                padding-top: 4px;
+            }
+        }
+
+        #location-link:visited {
+            color: lightskyblue;
+        }
+
         .hide {
             display: none;
         }
@@ -247,23 +265,39 @@
                         <div class="event-details">
                             <h3>Sunday, June 7th, 2026 | 4-7PM</h3>
                             <h4>
-                                <a href="https://www.google.com/maps..." target="_blank">Humboldt Park Hill</a>
+                                <a id="location-link" href="https://maps.app.goo.gl/24LPqKczUe2KAJUh9"
+                                    target="_blank">Humboldt Park
+                                    Hill
+                                    <svg width="22px" height="24px" viewBox="-7.96 0 54.401 54.401"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Group_17" data-name="Group 17" transform="translate(-800.157 -710)">
+                                            <path id="Path_44" data-name="Path 44"
+                                                d="M829.533,737.335c0,8.912-16.134,25.988-16.134,25.988s-16.134-17.076-16.134-25.988a16.134,16.134,0,0,1,32.268,0Z"
+                                                fill="white" stroke="lightskyblue" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="4" />
+                                            <path id="Path_45" data-name="Path 45"
+                                                d="M820.05,736.883a6.65,6.65,0,1,1-6.651-6.65A6.652,6.652,0,0,1,820.05,736.883Z"
+                                                fill="#ffffff" stroke="lightskyblue" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="4" />
+                                        </g>
+                                    </svg>
+                                </a>
                                 <br><br>Attire: Garden Party & Whatever Fancy Means to You
                             </h4>
-                            <p>You are cordially invited to an afternoon for a luxe picnic in Humboldt park with vegan food
+                            <p>You are cordially invited to an afternoon for a luxe picnic in Humboldt Park with vegan food
                                 and delightful company.</p>
                             <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
-                            <p>Gluten free, nut free and low/no sugar options available </p>
+                            <p>Gluten free, nut free and low/no sugar options available.</p>
                             <p>This event will be family friendly.</p>
                         </div>
                     </div>
                 </div>
             </section>
-
             <!-- Panel 3: RSVP Form -->
             <section class="panel rsvp">
                 <h2>RSVP</h2>
                 <div class="rsvp-form">
+                    <h3>Picnic June 7th in Humboldt Park</h3>
                     <form action="create-rsvp" method="POST">
                         @csrf
                         <p>
@@ -281,23 +315,90 @@
                             for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
                                 value="0" min="0" max="10" /> guests.
                         </p>
+                        <input type="hidden" id="event" name="event" value="june_7">
                         <button type="submit">Submit</button>
                         <p>save on <a target="_blank" href="https://calendar.app.google/hySxHQcaEXAyQgVF6">gcal</a></p>
-                    </form>
-                    <div>
                         <div>
-                            <h4>{{ $rsvp_count }} current confirmed attendees <span class="dropdown"
-                                    onclick="dropdown()">(click to see)</span></h4>
-                            <div id="attendee-list" class="hide">
-                                @foreach ($rsvps as $rsvp)
-                                    <span>
-                                        {{ $rsvp->guest_name }}
-                                        {{ $rsvp->plus_one > 0 ? 'and ' . $rsvp->plus_one . ' guest(s)' : '' }} <br />
-                                    </span>
-                                @endforeach
+                            <div>
+                                <h4>{{ $rsvp_count }} total attendees <span class="dropdown"
+                                        onclick="dropdown()">(confirmed
+                                        guests)</span></h4>
+                                <div id="attendee-list" class="hide">
+                                    @foreach ($rsvps as $rsvp)
+                                        <span>
+                                            {{ $rsvp->guest_name }}
+                                            {{ $rsvp->plus_one > 0 ? 'and ' . $rsvp->plus_one . ' guest(s)' : '' }} <br />
+                                        </span>
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
+                    </form>
+                </div>
+            </section>
+            <section class="panel">
+                <div class="event-container">
+                    <div class="container-header">
+                        <img class="mika" src="{{ asset('danza.jpeg') }}" alt="Mika" />
                     </div>
+                    <div>
+                        <h1>Aztec Danza Celebration</h1>
+                        <p class="desc-invite">You are also invited to the Danza Celebration.</p>
+                        <p><a href="https://www.youtube.com/watch?v=9QfMMeG8Tew" target="_blank">what is danza?</a></p>
+                        <div class="event-details">
+                            <h3>Saturday, June 13th, 2026 | 4-6pm</h3>
+                            <h4>
+                                <a id="location-link" href="https://maps.app.goo.gl/YdQBTb5JvXQyDrdL7" target="_blank">17301
+                                    Dobson Ave, South Holland, IL
+                                    <svg width="22px" height="24px" viewBox="-7.96 0 54.401 54.401"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Group_17" data-name="Group 17" transform="translate(-800.157 -710)">
+                                            <path id="Path_44" data-name="Path 44"
+                                                d="M829.533,737.335c0,8.912-16.134,25.988-16.134,25.988s-16.134-17.076-16.134-25.988a16.134,16.134,0,0,1,32.268,0Z"
+                                                fill="white" stroke="lightskyblue" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="4" />
+                                            <path id="Path_45" data-name="Path 45"
+                                                d="M820.05,736.883a6.65,6.65,0,1,1-6.651-6.65A6.652,6.652,0,0,1,820.05,736.883Z"
+                                                fill="#ffffff" stroke="lightskyblue" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="4" />
+                                        </g>
+                                    </svg>
+                                </a>
+                                <br>
+                            </h4>
+                            <p>We are also celebrating Mika June 13th. Join us for a Aztec ceremony and danza.</p>
+                            <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
+                            <p>Vegan food will be available.</p>
+                            <p>This event will be family friendly.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="panel rsvp-aztec">
+                <h2>RSVP</h2>
+                <div class="rsvp-form">
+                    <h3>Danza Celebration June 13th in South Holland</h3>
+                    <form action="create-rsvp" method="POST">
+                        @csrf
+                        <p>
+                            <label prejudices="guest_name">My name is</label>
+                            <input type="text" id="guest_name" name="guest_name" placeholder="name" />
+                        </p>
+                        <p>
+                            <label prejudices="attending">and I am a</label>
+                            <select name="attending" id="attending">
+                                <option value="yes">yes</option>
+                                <option value="maybe">maybe</option>
+                                <option value="no">no</option>
+                            </select>
+                            <br />
+                            for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
+                                value="0" min="0" max="10" /> guests.
+                        </p>
+                        <input type="hidden" id="event" name="event" value="june_13">
+                        <button type="submit">Submit</button>
+                        <p>save on <a target="_blank" href="https://calendar.app.google/6VaZCRtaqnjYDR9R9">gcal</a></p>
+                    </form>
                 </div>
             </section>
         @else
