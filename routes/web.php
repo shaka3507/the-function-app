@@ -10,16 +10,19 @@ Route::get('/', function () {
     $rsvps_no = [];
     $rsvp_count = 0;
     $rsvp_no_count = 0;
+    $total_count = 0;
     if (auth()->check()) {
         $rsvps = Rsvp::where('attending', ['yes', 'maybe'])->get();
         $rsvps_no = Rsvp::where('attending', 'no')->get();
         $rsvp_count = Rsvp::where('attending', ['yes', 'maybe'])->count();
         $rsvp_no_count = Rsvp::where('attending', ['no'])->count();
+        $plus_one_count = Rsvp::sum('plus_one');
+        $total_count = $rsvp_count + $plus_one_count;
     }
     return view('home', [
         'rsvps' => $rsvps, 
         'rsvps_no' => $rsvps_no, 
-        'rsvp_count' => $rsvp_count, 
+        'rsvp_count' => $total_count, 
         'rsvp_no_count' => $rsvp_no_count
     ]);
 });

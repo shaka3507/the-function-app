@@ -279,9 +279,9 @@
                             </select>
                             <br />
                             for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
-                                min="0" max="10" /> guests.
+                                value="0" min="0" max="10" /> guests.
                         </p>
-                        <button type="submit">Submit RSVP</button>
+                        <button type="submit">Submit</button>
                         <p>save on <a target="_blank" href="https://calendar.app.google/hySxHQcaEXAyQgVF6">gcal</a></p>
                     </form>
                     <div>
@@ -291,7 +291,8 @@
                             <div id="attendee-list" class="hide">
                                 @foreach ($rsvps as $rsvp)
                                     <span>
-                                        {{ $rsvp->guest_name }} <br />
+                                        {{ $rsvp->guest_name }}
+                                        {{ $rsvp->plus_one > 0 ? 'and ' . $rsvp->plus_one . ' guest(s)' : '' }} <br />
                                     </span>
                                 @endforeach
                             </div>
@@ -306,7 +307,7 @@
                     <form action="/onepw" method="POST">
                         @csrf
                         <input type="text" placeholder="name" name="onename">
-                        <br/>
+                        <br />
                         <input type="password" placeholder="password" name="onepassword">
                         <br />
                         <button>Enter</button>
