@@ -12,7 +12,7 @@ Route::get('/', function () {
     $rsvp_no_count = 0;
     $total_count = 0;
     if (auth()->check()) {
-        $rsvps = Rsvp::where('attending', ['yes', 'maybe'])->get();
+        $rsvps = Rsvp::where('attending', ['yes', 'maybe'])->where('event', 'june_7')->get();
         $rsvps_no = Rsvp::where('attending', 'no')->get();
         $rsvp_count = Rsvp::where('attending', ['yes', 'maybe'])->where('event', 'june_7')->count();
         $rsvp_no_count = Rsvp::where('attending', ['no'])->count();
