@@ -342,9 +342,8 @@
                         <img class="mika" src="{{ asset('danza.jpeg') }}" alt="Mika" />
                     </div>
                     <div>
-                        <h1>Aztec Danza Celebration</h1>
-                        <p class="desc-invite">You are also invited to the Danza Celebration.</p>
-                        <p><a href="https://www.youtube.com/watch?v=9QfMMeG8Tew" target="_blank">what is danza?</a></p>
+                        <h1>Mika's Trecena Celebration</h1>
+                        <h3>Una Danzita Mexica and Naming Ceremony</h3>
                         <div class="event-details">
                             <h3>Saturday, June 13th, 2026 | 4-6pm</h3>
                             <h4>
@@ -366,7 +365,7 @@
                                 </a>
                                 <br>
                             </h4>
-                            <p>We are also celebrating Mika June 13th. Join us for a Aztec ceremony and danza.</p>
+                            <p>We are also celebrating Mika June 13th. Join us for a Trecena celebration with Huehuecoyotl.</p>
                             <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
                             <p>Vegan food will be available.</p>
                             <p>This event will be family friendly.</p>
