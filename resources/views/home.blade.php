@@ -265,9 +265,9 @@
                         <div class="event-details">
                             <h3>Sunday, June 7th, 2026 | 4-7PM</h3>
                             <h4>
-                                <a id="location-link" href="https://maps.app.goo.gl/24LPqKczUe2KAJUh9"
+                                <a id="location-link" href="https://maps.app.goo.gl/WDGL9MPwk14Z5euw7?g_st=ic"
                                     target="_blank">Humboldt Park
-                                    Hill
+                                    - Formal Garden (new)
                                     <svg width="22px" height="24px" viewBox="-7.96 0 54.401 54.401"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <g id="Group_17" data-name="Group 17" transform="translate(-800.157 -710)">
