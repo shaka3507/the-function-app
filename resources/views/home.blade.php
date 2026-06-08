@@ -111,7 +111,8 @@
             width: 100%;
         }
 
-        .rsvp, .rsvp-aztec {
+        .rsvp,
+        .rsvp-aztec {
             background-image: url('./flower.png');
             background-size: 10%;
 
@@ -241,6 +242,12 @@
             text-decoration: underline;
             text-decoration-color: #B3FD9A;
         }
+        #rsvp-success {
+            font-size: 1.2em;
+            background-color: #B3FD9A;
+            padding: 4px;
+            width: fit-content;
+        }
     </style>
 </head>
 
@@ -256,7 +263,73 @@
             <section class="panel">
                 <div class="event-container">
                     <div class="container-header">
-                        <h1>A Flowering 40th Celebration</h1>
+                        <img class="mika" src="{{ asset('danza.jpeg') }}" alt="Mika" />
+                    </div>
+                    <div>
+                        <h1>Mika's Trecena Celebration</h1>
+                        <h2 id="rsvp-success" class="hide">Your response has been recorded</h2>
+                        <h3>Una Danzita Mexica and Naming Ceremony</h3>
+                        <div class="event-details">
+                            <h3>Saturday, June 13th, 2026 | 4-6pm</h3>
+                            <h4>
+                                <a id="location-link" href="https://maps.app.goo.gl/YdQBTb5JvXQyDrdL7" target="_blank">17301
+                                    Dobson Ave, South Holland, IL
+                                    <svg width="22px" height="24px" viewBox="-7.96 0 54.401 54.401"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g id="Group_17" data-name="Group 17" transform="translate(-800.157 -710)">
+                                            <path id="Path_44" data-name="Path 44"
+                                                d="M829.533,737.335c0,8.912-16.134,25.988-16.134,25.988s-16.134-17.076-16.134-25.988a16.134,16.134,0,0,1,32.268,0Z"
+                                                fill="white" stroke="lightskyblue" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="4" />
+                                            <path id="Path_45" data-name="Path 45"
+                                                d="M820.05,736.883a6.65,6.65,0,1,1-6.651-6.65A6.652,6.652,0,0,1,820.05,736.883Z"
+                                                fill="#ffffff" stroke="lightskyblue" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="4" />
+                                        </g>
+                                    </svg>
+                                </a>
+                                <br>
+                            </h4>
+                            <p>We are celebrating Mika June 13th. Join us for a Trecena celebration with Huehuecoyotl.
+                            </p>
+                            <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
+                            <p>Vegan food will be available.</p>
+                            <p>This event will be family friendly.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="panel rsvp-aztec">
+                <h2 >RSVP</h2>
+                <div class="rsvp-form">
+                    <h3>Danza Celebration June 13th in South Holland</h3>
+                    <form action="create-rsvp" method="POST">
+                        @csrf
+                        <p>
+                            <label prejudices="guest_name">My name is</label>
+                            <input type="text" id="guest_name" name="guest_name" placeholder="name" />
+                        </p>
+                        <p>
+                            <label prejudices="attending">and I am a</label>
+                            <select name="attending" id="attending">
+                                <option value="yes">yes</option>
+                                <option value="maybe">maybe</option>
+                                <option value="no">no</option>
+                            </select>
+                            <br />
+                            for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
+                                value="0" min="0" max="10" /> guests.
+                        </p>
+                        <input type="hidden" id="event" name="event" value="june_13">
+                        <button type="submit">Submit</button>
+                        <p>save on <a target="_blank" href="https://calendar.app.google/6VaZCRtaqnjYDR9R9">gcal</a></p>
+                    </form>
+                </div>
+            </section>
+            <section class="panel">
+                <div class="event-container">
+                    <div class="container-header">
+                        <h1 style="color:grey">A Flowering 40th Celebration (past)</h1>
                         <img class="mika" src="{{ asset('mika.png') }}" alt="Mika" />
                     </div>
                     <div>
@@ -294,7 +367,7 @@
                 </div>
             </section>
             <!-- Panel 3: RSVP Form -->
-            <section class="panel rsvp">
+            {{-- <section class="panel rsvp">
                 <h2>RSVP</h2>
                 <div class="rsvp-form">
                     <h3>Picnic June 7th in Humboldt Park</h3>
@@ -335,71 +408,7 @@
                         </div>
                     </form>
                 </div>
-            </section>
-            <section class="panel">
-                <div class="event-container">
-                    <div class="container-header">
-                        <img class="mika" src="{{ asset('danza.jpeg') }}" alt="Mika" />
-                    </div>
-                    <div>
-                        <h1>Mika's Trecena Celebration</h1>
-                        <h3>Una Danzita Mexica and Naming Ceremony</h3>
-                        <div class="event-details">
-                            <h3>Saturday, June 13th, 2026 | 4-6pm</h3>
-                            <h4>
-                                <a id="location-link" href="https://maps.app.goo.gl/YdQBTb5JvXQyDrdL7" target="_blank">17301
-                                    Dobson Ave, South Holland, IL
-                                    <svg width="22px" height="24px" viewBox="-7.96 0 54.401 54.401"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <g id="Group_17" data-name="Group 17" transform="translate(-800.157 -710)">
-                                            <path id="Path_44" data-name="Path 44"
-                                                d="M829.533,737.335c0,8.912-16.134,25.988-16.134,25.988s-16.134-17.076-16.134-25.988a16.134,16.134,0,0,1,32.268,0Z"
-                                                fill="white" stroke="lightskyblue" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="4" />
-                                            <path id="Path_45" data-name="Path 45"
-                                                d="M820.05,736.883a6.65,6.65,0,1,1-6.651-6.65A6.652,6.652,0,0,1,820.05,736.883Z"
-                                                fill="#ffffff" stroke="lightskyblue" stroke-linecap="round"
-                                                stroke-linejoin="round" stroke-width="4" />
-                                        </g>
-                                    </svg>
-                                </a>
-                                <br>
-                            </h4>
-                            <p>We are also celebrating Mika June 13th. Join us for a Trecena celebration with Huehuecoyotl.</p>
-                            <p>We appreciate your support in celebrating the fortieth solar's return of Mika Muñoz.</p>
-                            <p>Vegan food will be available.</p>
-                            <p>This event will be family friendly.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="panel rsvp-aztec">
-                <h2>RSVP</h2>
-                <div class="rsvp-form">
-                    <h3>Danza Celebration June 13th in South Holland</h3>
-                    <form action="create-rsvp" method="POST">
-                        @csrf
-                        <p>
-                            <label prejudices="guest_name">My name is</label>
-                            <input type="text" id="guest_name" name="guest_name" placeholder="name" />
-                        </p>
-                        <p>
-                            <label prejudices="attending">and I am a</label>
-                            <select name="attending" id="attending">
-                                <option value="yes">yes</option>
-                                <option value="maybe">maybe</option>
-                                <option value="no">no</option>
-                            </select>
-                            <br />
-                            for attending and I'm bringing <input type="number" id="plus_one" name="plus_one"
-                                value="0" min="0" max="10" /> guests.
-                        </p>
-                        <input type="hidden" id="event" name="event" value="june_13">
-                        <button type="submit">Submit</button>
-                        <p>save on <a target="_blank" href="https://calendar.app.google/6VaZCRtaqnjYDR9R9">gcal</a></p>
-                    </form>
-                </div>
-            </section>
+            </section> --}}
         @else
             <div class="modern-blob">
                 <div class="login-form">
@@ -425,6 +434,21 @@
                 list.classList.toggle('show');
             }
         }
+                window.addEventListener("load", (event) => {
+            console.log("page is fully loaded");
+            const paramsString = window.location.search;
+            const searchParams = new URLSearchParams(paramsString);
+            console.log('search params', searchParams)
+            console.log(searchParams.get("rsvp"));
+            console.log("search params", searchParams.get("rsvp") === 'complete');
+            if(searchParams.get("rsvp") === 'complete') {
+                const header = document.getElementById('rsvp-success') 
+                if (header) {
+                    header.classList.toggle('hide');
+                    header.classList.toggle('show');
+                }
+            }
+        });
     </script>
 </body>
 

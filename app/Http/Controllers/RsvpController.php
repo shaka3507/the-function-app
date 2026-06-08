@@ -20,6 +20,6 @@ class RsvpController extends Controller
         $incomingFields['guest_name'] = strip_tags($incomingFields['guest_name']);
         $incomingFields['user_id'] = auth()->id();
         Rsvp::create($incomingFields);
-        return redirect('/');
+        return redirect('/?rsvp=complete');
     }
 }
